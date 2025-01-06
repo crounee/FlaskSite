@@ -1,0 +1,10 @@
+FROM python:3.10
+WORKDIR /site
+COPY requirements.txt /site
+COPY app.py /site
+COPY modules /site
+RUN pip install Flask
+RUN pip install flask-restful
+RUN pip install waitress
+RUN pip install SQLAlchemy
+RUN pip install psycopg2

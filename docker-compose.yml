@@ -1,0 +1,26 @@
+
+services:
+  db:
+    image: postgres
+    container_name: my_postgres
+    volumes:
+      - .postgres/psql:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=admin
+
+    ports:
+      - 5430:5432
+
+  ng:
+    image: nginx
+    container_name: my_nginx
+    volumes:
+      - ./nginxSettings/nginx.conf:/etc/nginx/nginx.conf
+
+    ports:
+      - 8080:80
+
+  flask:
+    container_name: my_flask
+    build: ./site
+    command: python app.py
